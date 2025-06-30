@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { handelError, handleSuccess } from '../utils';
-import {ToastContainer}from 'react-toastify'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './home.css';
+
 
 function Home() {
   const [loggedInUser, setLoggedInUser] = useState('');
@@ -19,57 +22,58 @@ function Home() {
     }
   }, [navigate]);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-
+  const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('loggedInUser');
     handleSuccess('Logged out successfully');
-
-    // ✅ Navigate immediately after clearing
-    // navigate('/login');
-    setTimeout(() => {
-    navigate('/login');
-  }, 1000);
+    setTimeout(() => navigate('/login'), 1000);
   };
 
-  const fetchProducts = async ()=>{
+  const fetchProducts = async () => {
     try {
-      const url = 'http://localhost:8080/products';
-      const headers = {
-      headers:{
-        'Authorization':localStorage.getItem('token')
-      }
-      }
-      const response = await fetch(url, headers);
+      const response = await fetch('http://localhost:8080/products', {
+        headers: { Authorization: localStorage.getItem('token') },
+      });
       const result = await response.json();
-      console.log(result);
-      setProducts(result);
+
+      const withImages = result.map((p, i) => ({
+        ...p,
+        image: `https://source.unsplash.com/300x200/?${p.name},product`,
+      }));
+
+      setProducts(withImages);
     } catch (err) {
       handelError(err);
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchProducts();
-  })
+  }, []);
 
   return (
-    <div>
-      <h1>Welcome, {loggedInUser}</h1>
-      <button onClick={handleLogout}>LogOut</button>
-      <div>
-        {
-          products && products?.map((item , index)=>(
-            <ul key={index}>
-              <span>{item.name} : {item.price} </span>
-            </ul>
-          ))
-        }
-      </div>
+   <div className="home-container">
+  <div className="top-bar">
+    <div className="welcome"> Welcome, <span className="username">{loggedInUser}</span></div>
+ 
+    <button onClick={handleLogout} className="logout-btn">Logout</button>
+  </div>
 
-      <ToastContainer/>
-    </div>
+  <div className="product-grid">
+    {products && products.map((item, index) => (
+      <div className="product-card" key={index}>
+        <div className="product-name">{item.name}</div>
+        <div className="product-price">Rs {item.price}</div>
+      </div>
+    ))}
+  </div>
+   <ToastContainer/>
+</div>
+
+
+
+     
+ 
   );
 }
 

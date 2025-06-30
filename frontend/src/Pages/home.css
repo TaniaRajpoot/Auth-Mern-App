@@ -1,0 +1,81 @@
+/* src/Home.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.home-container {
+  padding: 2rem 4rem;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: column;      /* stack items vertically */
+  align-items: center;         /* center horizontally */
+  justify-content: center;     /* center vertically if container has height */
+  gap: 12px;                   /* spacing between welcome and button */
+  padding: 16px 0;   
+}
+
+.welcome {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.username {
+  color: purple;
+}
+
+.logout-btn {
+  background-color: purple;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  display: block;
+  margin-top: 8px;
+  
+}
+
+.logout-btn:hover {
+  background-color: #5e007c;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-name {
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.product-price {
+  margin-top: 0.2rem;
+  color: purple;
+  font-weight: 600;
+}
