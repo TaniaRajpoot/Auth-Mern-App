@@ -1,0 +1,1 @@
+export const backend_url = 'https://auth-mern-api-livid.vercel.app/api'
