@@ -31,7 +31,7 @@ function Home() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(`${backend_url}8080/products`, {
+   const response = await fetch(`${backend_url}/products`, {
         headers: { Authorization: localStorage.getItem('token') },
       });
       const result = await response.json();
