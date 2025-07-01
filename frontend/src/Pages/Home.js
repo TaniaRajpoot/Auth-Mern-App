@@ -4,7 +4,7 @@ import { handelError, handleSuccess } from '../utils';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './home.css';
-import { backend_url } from '../../server';
+import { backend_url } from '../server';
 
 function Home() {
   const [loggedInUser, setLoggedInUser] = useState('');
