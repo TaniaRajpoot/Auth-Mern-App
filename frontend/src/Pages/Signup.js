@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link,  useNavigate } from 'react-router-dom'
 import {ToastContainer} from 'react-toastify'
 import { handelError, handleSuccess } from '../utils'
-import { backend_url } from '../../server';
+import { backend_url } from '../server';
 function Signup() {
     const [signupInfo, setSignupInfo] = useState({
         name:'',
