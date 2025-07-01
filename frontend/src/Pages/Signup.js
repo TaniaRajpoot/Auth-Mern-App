@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link,  useNavigate } from 'react-router-dom'
 import {ToastContainer} from 'react-toastify'
 import { handelError, handleSuccess } from '../utils'
-
+import { backend_url } from '../../server';
 function Signup() {
     const [signupInfo, setSignupInfo] = useState({
         name:'',
@@ -31,7 +31,7 @@ function Signup() {
     }
 
     try {
-        const url = "http://localhost:8080/auth/signup";
+        const url = `${backend_url}/auth/signup`;
         const response = await fetch(url, {
             method: "POST",
             headers: {

@@ -4,7 +4,7 @@ import { handelError, handleSuccess } from '../utils';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './home.css';
-
+import { backend_url } from '../../server';
 
 function Home() {
   const [loggedInUser, setLoggedInUser] = useState('');
@@ -31,7 +31,7 @@ function Home() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:8080/products', {
+      const response = await fetch(`${backend_url}8080/products`, {
         headers: { Authorization: localStorage.getItem('token') },
       });
       const result = await response.json();
