@@ -52,7 +52,7 @@ const login = async (req, res) => {
         const isPassEqual = await bcrypt.compare(password , user.password)
         if(!isPassEqual){
             return res.status(403)
-            .json({message:errorMsg,sucess:false});
+            .json({message:errorMsg,success:false});
         }
         const jwtToken = jwt.sign({email: user.email, user:user._id},
             process.env.JWT_SECRET,
